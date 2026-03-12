@@ -1,0 +1,46 @@
+<div class="container mt-5">
+
+  <h1 class="mb-4">My Trips</h1>
+
+  <div class="row">
+
+    <% @trips.each do |trip| %>
+
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100 position-relative">
+
+          <div class="card-body">
+
+            <h5 class="card-title">
+              <%= trip.city %>
+            </h5>
+
+            <p class="card-text">
+              <%= trip.content.presence || "No description provided." %>
+            </p>
+
+            <%= link_to "View Trip",
+                trip.chats.first ? chat_path(trip.chats.first) : chats_path(chat: { trip_id: trip.id }),
+                method: :post,
+                class: "btn btn-primary" %>
+
+            <!-- botão delete -->
+            <%= button_to trip_path(trip),
+                method: :delete,
+                data: { turbo_confirm: "Delete this trip?" },
+                class: "btn btn-link position-absolute top-0 end-0 m-2 p-0 text-danger" do %>
+
+              <i class="bi bi-trash"></i>
+
+            <% end %>
+
+          </div>
+
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
+
+</div>

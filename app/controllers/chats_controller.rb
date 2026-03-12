@@ -3,13 +3,13 @@ class ChatsController < ApplicationController
 
   def create
     @trip = Trip.find(params[:chat][:trip_id])
-    @chat = Chat.new(user: current_user, trip: @trip)
 
-    if @chat.save
-      redirect_to chat_path(@chat)
-    else
-      redirect_to root_path, alert: "Error starting chat."
-    end
+    @chat = @trip.chats.first || Chat.create!(
+      trip: @trip,
+      user: current_user
+    )
+
+    redirect_to chat_path(@chat)
   end
 
   def show
