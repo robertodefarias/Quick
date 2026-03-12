@@ -8,9 +8,12 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
+  resources :trips, only: [:new, :create, :index, :show]
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-  resources :chats, only: [:create, :show, :destroy]
+  resources :chats, only: [:create, :show, :destroy] do
+    resources :messages, only: [:create]
+  end
   # Defines the root path route ("/")
   # root "posts#index"
 end

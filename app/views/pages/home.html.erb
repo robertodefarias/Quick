@@ -7,7 +7,7 @@
 
   <div class="mt-4">
     <% if user_signed_in? %>
-      <%= link_to "Create Trip", "#", class: "btn btn-primary btn-lg me-2" %>
+      <%= link_to "Create Trip", new_trip_path, class: "btn btn-primary btn-lg me-2" %>
       <%= link_to "My Trips", "#", class: "btn btn-outline-dark btn-lg" %>
     <% else %>
       <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg me-2" %>
