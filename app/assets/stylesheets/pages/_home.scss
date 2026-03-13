@@ -1,1 +1,101 @@
-// Specific CSS for your home-page
+.quicktrip-hero .quicktrip-hero-logo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.quicktrip-hero .brand-text {
+  font-size: clamp(2.4rem, 6vw, 3.5rem);
+  font-weight: 800;
+  color: #163b7a;
+  letter-spacing: -0.04em;
+  position: relative;
+  z-index: 2;
+  line-height: 1;
+}
+
+.quicktrip-hero .lightning {
+  color: #f4c542;
+  font-style: normal;
+  position: relative;
+}
+
+.quicktrip-hero .plane-route {
+  position: relative;
+  width: 220px;
+  height: 80px;
+  color: #163b7a;
+  flex-shrink: 0;
+}
+
+.quicktrip-hero .route-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.quicktrip-hero .route-path {
+  stroke-dashoffset: 220;
+  animation: drawPath 2.2s ease forwards;
+}
+
+.quicktrip-hero .plane {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  font-size: 1.6rem;
+  color: #f4c544;
+  animation: flyPlane 2.2s ease forwards;
+  transform-origin: center;
+  will-change: transform;
+}
+
+@keyframes drawPath {
+  from {
+    stroke-dashoffset: 220;
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes flyPlane {
+  0% {
+    transform: translate(0, 10px) rotate(-8deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  60% {
+    transform: translate(110px, -18px) rotate(-6deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(180px, -8px) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .quicktrip-hero .quicktrip-hero-logo {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .quicktrip-hero .plane-route {
+    width: 180px;
+    height: 70px;
+  }
+
+  .quicktrip-hero .plane {
+    font-size: 1.4rem;
+  }
+}
