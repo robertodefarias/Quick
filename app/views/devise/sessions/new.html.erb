@@ -2,20 +2,22 @@
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 col-lg-5">
       <div class="card shadow-sm border-0 rounded-4 p-4">
-        <h2 class="text-center mb-4 fw-bold">Welcome back</h2>
-        <p class="text-center text-muted mb-4">Log in to continue planning your next trip.</p>
+        <h2 class="text-center mb-4 fw-bold">Bem-vindo de volta</h2>
+        <p class="text-center text-muted mb-4">Faça login para continuar planejando sua próxima viagem.</p>
 
         <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <%= f.input :email,
+            label: "E-mail",
             required: false,
             autofocus: true,
             input_html: { autocomplete: "email" } %>
 
           <%= f.input :password,
+            label: "Senha",
             required: false,
             input_html: { autocomplete: "current-password" } %>
 
-          <%= f.button :submit, "Login", class: "btn btn-primary w-100 rounded-3" %>
+          <%= f.button :submit, "Entrar", class: "btn btn-primary w-100 rounded-3" %>
         <% end %>
 
         <div class="text-center mt-4">

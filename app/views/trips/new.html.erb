@@ -1,9 +1,9 @@
 <div class="container py-5">
-<h1>Create Trip</h1>
+  <h1>Criar Viagem</h1>
 
-<%= simple_form_for @trip do |f| %>
-  <%= f.input :city, input_html: { class: "bg-white rounded-3 shadow-sm" } %>
-  <%= f.input :content, input_html: { class: "bg-white rounded-3 shadow-sm" } %>
-  <%= f.button :submit, "Create Trip", class: "btn btn-primary me-2" %>
-<% end %>
+  <%= simple_form_for @trip do |f| %>
+    <%= f.input :city, label: "Cidade", input_html: { class: "bg-white rounded-3 shadow-sm" } %>
+    <%= f.input :content, label: "Descrição", input_html: { class: "bg-white rounded-3 shadow-sm" } %>
+    <%= f.button :submit, "Criar Viagem", class: "btn btn-primary me-2" %>
+  <% end %>
 </div>
