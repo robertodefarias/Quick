@@ -1,6 +1,6 @@
 <div class="container mt-5">
 
-  <h1 class="mb-4">My Trips</h1>
+  <h1 class="mb-4">Meus Roteiros </h1>
 
   <div class="row">
 
@@ -19,7 +19,7 @@
               <%= trip.content.presence || "No description provided." %>
             </p>
 
-            <%= link_to "View Trip",
+            <%= link_to "Ver Roteiro",
                 trip.chats.first ? chat_path(trip.chats.first) : chats_path(chat: { trip_id: trip.id }),
                 method: :post,
                 class: "btn btn-primary" %>
