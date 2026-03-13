@@ -1,0 +1,8 @@
+<h1><%= @trip.city %></h1>
+
+<p><%= @trip.content %></p>
+
+<%= button_to "Start AI Chat",
+    chats_path(chat: { trip_id: @trip.id }),
+    method: :post,
+    class: "btn btn-primary" %>
