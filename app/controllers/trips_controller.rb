@@ -17,31 +17,18 @@ class TripsController < ApplicationController
     @trip = current_user.trips.build(trip_params)
 
     if @trip.save
-      # cria chat automaticamente
       chat = Chat.create!(
         user: current_user,
         trip: @trip
       )
 
-      # primeira pergunta automática
-      user_message = Message.create!(
+      Message.create!(
         chat: chat,
         role: "user",
         content: "Plan a short trip to #{@trip.city}. #{@trip.content}"
       )
 
-      # chama a IA
-      response = RubyLLM.chat.ask(user_message.content)
-
-      # salva resposta da IA
-      Message.create!(
-        chat: chat,
-        role: "assistant",
-        content: response.content
-      )
-
       redirect_to chat_path(chat)
-
     else
       render :new, status: :unprocessable_entity
     end
