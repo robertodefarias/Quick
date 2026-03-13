@@ -11,48 +11,148 @@
             Qu<span class="lightning">i</span>ckTrip
           </span>
 
-  <div class="mt-4">
-    <% if user_signed_in? %>
+          <span class="plane-route">
+            <svg class="route-svg" viewBox="0 0 220 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                class="route-path"
+                d="M10 60 C 70 20, 130 20, 190 35"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-dasharray="6 8"
+                fill="none"
+              />
+            </svg>
 
-      <%= link_to "Create Trip", new_trip_path, class: "btn btn-primary btn-lg me-2" %>
-      <%= link_to "My Trips", trips_path, class: "btn btn-outline-dark btn-lg" %>
-
-      <div class="row mt-5">
-
-        <% @cities.each do |city| %>
-
-          <div class="col-md-4 mb-4">
-
-            <div class="city-card">
-
-              <img src="<%= city.image_url %>" class="city-card-img">
-
-              <div class="city-card-overlay">
-
-                <h4 class="city-card-title">
-                  <%= city.city %>
-                </h4>
-
-              <%= button_to "Explore",
-                  chats_path(chat: { trip_id: city.id }),
-                  method: :post,
-                  class: "btn btn-primary btn-sm mt-2" %>
-
-          </div>
-
+            <span class="plane">✈</span>
+          </span>
         </div>
 
-      </div>
+        <% if user_signed_in? %>
+          <div class="mt-4 fade-in-up delay-3">
+            <%= link_to "Criar roteiro", new_trip_path, class: "btn btn-primary btn-lg me-2" %>
+            <%= link_to "Meus roteiros", trips_path, class: "btn btn-outline-dark btn-lg" %>
+          </div>
 
+          <div class="row mt-5">
+            <% @cities.each do |city| %>
+              <div class="col-md-4 mb-4">
+                <div class="city-card">
+                  <img src="<%= city.image_url %>" class="city-card-img">
+
+                  <div class="city-card-overlay">
+                    <h4 class="city-card-title">
+                      <%= city.city %>
+                    </h4>
+
+                    <%= button_to "Explorar",
+                        chats_path(chat: { trip_id: city.id }),
+                        method: :post,
+                        class: "btn btn-primary btn-sm mt-2" %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+        <% else %>
+          <h1 class="display-5 fw-bold mb-4 fade-in-up delay-3">
+            Monte seu próximo <span class="text-primary">roteiro rápido</span> em segundos
+          </h1>
+
+          <p class="lead text-muted mb-5 fade-in-up delay-4">
+            Descreva o destino, seu estilo e quanto tempo você tem. Em instantes, receba sugestões
+            personalizadas de passeios para aproveitar melhor o seu momento.
+          </p>
+
+          <div class="d-flex justify-content-center gap-3 flex-wrap mb-5 fade-in-up delay-4">
+            <%= link_to "Começar agora", new_user_registration_path, class: "btn btn-primary btn-lg px-4 shadow-sm hover-lift" %>
+            <%= link_to "Entrar", new_user_session_path, class: "btn btn-outline-dark btn-lg px-4 hover-lift" %>
+          </div>
+
+          <div class="row g-4 mt-3">
+            <div class="col-md-4">
+              <div class="card border-0 shadow-sm h-100 rounded-4 feature-card fade-in-up delay-2">
+                <div class="card-body p-4 text-center">
+                  <div class="feature-icon mb-3 floating-icon">🎯</div>
+                  <h3 class="h5 fw-bold">Foco no seu destino</h3>
+                  <p class="text-muted mb-0">
+                    Sugestões alinhadas à cidade que você quer explorar, sem pesquisas intermináveis.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="card border-0 shadow-sm h-100 rounded-4 feature-card fade-in-up delay-3">
+                <div class="card-body p-4 text-center">
+                  <div class="feature-icon mb-3 floating-icon">⚡</div>
+                  <h3 class="h5 fw-bold">Respostas imediatas</h3>
+                  <p class="text-muted mb-0">
+                    Basta preencher alguns dados e pronto: seu roteiro está organizado em segundos.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="card border-0 shadow-sm h-100 rounded-4 feature-card fade-in-up delay-4">
+                <div class="card-body p-4 text-center">
+                  <div class="feature-icon mb-3 floating-icon">✨</div>
+                  <h3 class="h5 fw-bold">Sob medida para você</h3>
+                  <p class="text-muted mb-0">
+                    Respeitamos seu orçamento, tempo disponível e estilo preferido de viagem.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row justify-content-center mt-5 pt-4">
+            <div class="col-lg-10">
+              <div class="card border-0 bg-white shadow-sm rounded-4 fade-in-up delay-4">
+                <div class="card-body p-4 p-md-5">
+                  <div class="row g-4 text-center">
+                    <div class="col-md-4">
+                      <p class="text-primary fw-bold mb-2">1</p>
+                      <h4 class="h6 fw-bold">Informe poucos dados</h4>
+                      <p class="text-muted mb-0 small">
+                        Destino, duração e orçamento — o básico já é suficiente.
+                      </p>
+                    </div>
+
+                    <div class="col-md-4">
+                      <p class="text-primary fw-bold mb-2">2</p>
+                      <h4 class="h6 fw-bold">Receba sugestões rápidas</h4>
+                      <p class="text-muted mb-0 small">
+                        Nosso sistema combina as melhores opções com base no que você busca.
+                      </p>
+                    </div>
+
+                    <div class="col-md-4">
+                      <p class="text-primary fw-bold mb-2">3</p>
+                      <h4 class="h6 fw-bold">Acesse quando quiser</h4>
+                      <p class="text-muted mb-0 small">
+                        Guarde tudo na sua conta e revise antes da viagem.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row justify-content-center mt-5">
+            <div class="col-lg-8 text-center fade-in-up delay-4">
+              <p class="text-muted mb-3">
+                Ideal para bate-volta, finais de semana prolongados e aquela viagem de última hora.
+              </p>
+              <%= link_to "Quero planejar agora", new_user_registration_path, class: "btn btn-dark btn-lg px-4 hover-lift" %>
+            </div>
+          </div>
         <% end %>
 
       </div>
-
-    <% else %>
-
-      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg me-2" %>
-      <%= link_to "Login", new_user_session_path, class: "btn btn-outline-dark btn-lg" %>
-
-    <% end %>
+    </div>
   </div>
 </div>
