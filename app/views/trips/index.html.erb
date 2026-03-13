@@ -1,9 +1,9 @@
 <div class="container py-5">
 
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1>My Trips</h1>
+    <h1>Meus Roteiros</h1>
 
-    <%= link_to "New Trip",
+    <%= link_to "Novo Roteiro",
         new_trip_path,
         class: "btn btn-primary" %>
   </div>
@@ -16,7 +16,7 @@
 
         <div class="col-md-4 mb-4">
 
-          <div class="card trip-card shadow-sm h-100">
+          <div class="card trip-card shadow-sm h-100 bg-white border-0">
 
             <div class="card-body">
 
@@ -32,7 +32,7 @@
 
                 <%= link_to "Abrir Chat",
                     chats_path(chat: { trip_id: trip.id }),
-                    method: :post,
+                    data: { turbo_method: :post },
                     class: "btn btn-outline-primary btn-sm" %>
 
                 <%= button_to trip_path(trip),

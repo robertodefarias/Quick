@@ -7,7 +7,7 @@
 
     <div class="ms-auto d-flex align-items-center gap-2">
       <% if user_signed_in? %>
-        <%= link_to "Meus roteiros", "#", class: "btn btn-outline-primary hover-lift" %>
+        <%= link_to "Meus roteiros", trips_path, class: "btn btn-outline-primary hover-lift" %>
         <%= link_to "Sair", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-dark hover-lift" %>
       <% else %>
         <%= link_to "Entrar", new_user_session_path, class: "btn btn-outline-primary hover-lift" %>
