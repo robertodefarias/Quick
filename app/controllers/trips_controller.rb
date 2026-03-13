@@ -9,6 +9,10 @@ class TripsController < ApplicationController
     @trip = Trip.new
   end
 
+  def show
+    @trip = current_user.trips.find(params[:id])
+  end
+
   def create
     @trip = current_user.trips.build(trip_params)
 
@@ -20,10 +24,20 @@ class TripsController < ApplicationController
       )
 
       # primeira pergunta automática
-      Message.create!(
+      user_message = Message.create!(
         chat: chat,
         role: "user",
-        content: "Tell me the main tourist attractions in #{@trip.city}"
+        content: "Plan a short trip to #{@trip.city}. #{@trip.content}"
+      )
+
+      # chama a IA
+      response = RubyLLM.chat.ask(user_message.content)
+
+      # salva resposta da IA
+      Message.create!(
+        chat: chat,
+        role: "assistant",
+        content: response.content
       )
 
       redirect_to chat_path(chat)
@@ -33,8 +47,10 @@ class TripsController < ApplicationController
     end
   end
 
-  def show
+  def destroy
     @trip = current_user.trips.find(params[:id])
+    @trip.destroy
+    redirect_to trips_path, notice: "Trip deleted"
   end
 
   private

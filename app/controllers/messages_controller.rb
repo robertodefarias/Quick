@@ -14,16 +14,19 @@ class MessagesController < ApplicationController
     @chat = current_user.chats.find(params[:chat_id])
     @trip = @chat.trip
 
-    # mensagem do usuário
     @message = Message.new(message_params)
     @message.chat = @chat
     @message.role = "user"
 
     if @message.save
 
+      history = @chat.messages.map do |message|
+        { role: message.role, content: message.content }
+      end
+
       response = RubyLLM.chat
         .with_instructions(instructions)
-        .ask(@message.content)
+        .ask(history)
 
       Message.create!(
         role: "assistant",
@@ -36,6 +39,10 @@ class MessagesController < ApplicationController
     else
       render "chats/show", status: :unprocessable_entity
     end
+  end
+
+  def trip_context
+    "The user is asking about #{@trip.city}. Context: #{@trip.context}"
   end
 
   private
