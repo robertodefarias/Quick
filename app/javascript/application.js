@@ -4,6 +4,12 @@ import "controllers"
 import "@popperjs/core"
 import "bootstrap"
 
- document.addEventListener("turbo:load", () => {
-  window.scrollTo(0, document.body.scrollHeight)
+document.addEventListener("turbo:load", () => {
+
+  const messages = document.getElementById("messages")
+
+  if (messages) {
+    messages.scrollIntoView({ behavior: "smooth", block: "end" })
+  }
+
 })
