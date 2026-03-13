@@ -1,39 +1,33 @@
 <div class="container py-5">
-  <div id="messages" class="mb-4">
-    <% @chat.messages.each do |message| %>
-      <% if message.role == "user" %>
-        <%# Mensagem do Usuário: Alinhada à direita, azul e arredondada %>
-        <div class="d-flex justify-content-end mb-3">
-          <div class="bg-primary text-white p-3 shadow-sm rounded-4 d-inline-block" style="max-width: 80%;">
-            <%= simple_format(message.content, class: "mb-0") %>
-          </div>
-        </div>
 
-      <% else %>
-        <%# Mensagem da IA: Alinhada à esquerda, branca com borda suave %>
-        <div class="d-flex justify-content-start mb-3">
-          <div class="bg-white border-0 shadow-sm p-3 rounded-4 d-inline-block" style="max-width: 80%;">
-            <%= simple_format(message.content, class: "mb-0") %>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+  <div id="messages" class="mb-4">
+
+    <%= turbo_stream_from @chat %>
+
+    <%= render @chat.messages %>
+
   </div>
 
-  <%# Formulário de Input fixo ou no final da página %>
   <div id="new_message_container" class="mt-4">
     <%= simple_form_for [@chat, @message] do |f| %>
+
       <div class="input-group gap-2">
+
         <%= f.input :content,
             label: false,
             placeholder: "Pergunte algo sobre sua viagem...",
             wrapper: false,
-            input_html: { class: "form-control form-control-lg bg-white border-0 shadow-sm rounded-4" } %>
+            input_html: {
+              class: "form-control form-control-lg bg-white border-0 shadow-sm rounded-4"
+            } %>
 
         <button class="btn btn-primary btn-lg rounded-4 shadow-sm px-4" type="submit">
           <i class="fa-solid fa-paper-plane"></i> Enviar
         </button>
+
       </div>
+
     <% end %>
   </div>
+
 </div>

@@ -1,0 +1,7 @@
+<%= turbo_stream.append "messages" do %>
+  <%= render @message %>
+<% end %>
+
+<%= turbo_stream.append "messages" do %>
+  <%= render @ai_message %>
+<% end %>

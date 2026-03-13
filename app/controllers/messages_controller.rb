@@ -14,30 +14,24 @@ class MessagesController < ApplicationController
     @chat = current_user.chats.find(params[:chat_id])
     @trip = @chat.trip
 
-    @message = Message.new(message_params)
-    @message.chat = @chat
-    @message.role = "user"
+    @message = Message.create!(
+      chat: @chat,
+      role: "user",
+      content: params[:message][:content]
+    )
 
-    if @message.save
+    response = RubyLLM.chat
+      .with_instructions(instructions)
+      .ask(@message.content)
 
-      history = @chat.messages.map do |message|
-        { role: message.role, content: message.content }
-      end
+    @ai_message = Message.create!(
+      chat: @chat,
+      role: "assistant",
+      content: response.content
+    )
 
-      response = RubyLLM.chat
-        .with_instructions(instructions)
-        .ask(history)
-
-      Message.create!(
-        role: "assistant",
-        content: response.content,
-        chat: @chat
-      )
-
-      redirect_to chat_path(@chat)
-
-    else
-      render "chats/show", status: :unprocessable_entity
+    respond_to do |format|
+      format.turbo_stream
     end
   end
 
