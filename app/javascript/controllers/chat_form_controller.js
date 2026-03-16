@@ -10,4 +10,11 @@ export default class extends Controller {
     this.inputTarget.value = ""
     this.inputTarget.focus()
   }
+
+  submitOnEnter(event) {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault()
+      this.element.requestSubmit()
+    }
+  }
 }

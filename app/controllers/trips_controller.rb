@@ -22,10 +22,22 @@ class TripsController < ApplicationController
         trip: @trip
       )
 
-      Message.create!(
+      # Mensagem inicial Automatica
+      user_message = Message.create!(
         chat: chat,
         role: "user",
-        content: "Plan a short trip to #{@trip.city}. #{@trip.content}"
+        content: "Criando um roteiro resumido para visitar #{@trip.city}. #{@trip.content}"
+      )
+
+      # chamada da IA
+      response = RubyLLM.chat
+                        .with_instructions("You are a travel assistant.")
+        .ask(user_message.content)
+
+      Message.create!(
+        chat: chat,
+        role: "assistant",
+        content: response.content
       )
 
       redirect_to chat_path(chat)
