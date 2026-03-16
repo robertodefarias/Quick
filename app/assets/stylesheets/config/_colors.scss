@@ -1,10 +1,22 @@
-// Define variables for your color scheme
+// QuickTrip Brand Colors
+$quicktrip-blue: #163b7a;
+$quicktrip-yellow: #f4c542;
+$quicktrip-blue-dark: #102b59;
+$quicktrip-yellow-dark: #e0b233;
 
-// For example:
-$red: #FD1015;
-$blue: #0D6EFD;
-$yellow: #FFC65A;
-$orange: #E67E22;
-$green: #1EDD88;
-$gray: #0E0000;
-$light-gray: #F4F4F4;
+// Neutral palette
+$quicktrip-bg: #f7f9fc;
+$quicktrip-surface: #ffffff;
+$quicktrip-text: #122033;
+$quicktrip-text-soft: #5f6b7a;
+$quicktrip-border: #dbe4f0;
+$quicktrip-shadow: rgba(18, 32, 51, 0.08);
+
+// Bootstrap-compatible variables
+$red: #dc3545;
+$blue: $quicktrip-blue;
+$yellow: $quicktrip-yellow;
+$orange: #e67e22;
+$green: #1e9e63;
+$gray: $quicktrip-text;
+$light-gray: $quicktrip-bg;

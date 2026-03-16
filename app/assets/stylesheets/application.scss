@@ -11,4 +11,179 @@
 @import "components/index";
 @import "pages/index";
 
-@import "components/cards"
+// =========================
+// GLOBAL QUICKTRIP STYLES
+// =========================
+
+html,
+body {
+  background-color: $quicktrip-bg;
+  color: $quicktrip-text;
+  font-family: $body-font;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6,
+.navbar-brand,
+.brand-text {
+  font-family: $headers-font;
+  color: $quicktrip-text;
+}
+
+p {
+  color: $quicktrip-text-soft;
+}
+
+a {
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.container,
+.container-fluid {
+  position: relative;
+  z-index: 2;
+}
+
+// Remove visual genérico de bootstrap em focos
+.form-control,
+.form-select {
+  border-radius: 14px;
+  border: 1px solid $quicktrip-border;
+  padding: 0.85rem 1rem;
+  box-shadow: none;
+  transition: all 0.25s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: $quicktrip-blue;
+  box-shadow: 0 0 0 0.2rem rgba(22, 59, 122, 0.12);
+}
+
+// Botões globais base
+.btn {
+  border-radius: 14px;
+  font-weight: 600;
+  padding: 0.8rem 1.2rem;
+  transition: all 0.25s ease;
+  box-shadow: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+// Sobrescrevendo classes bootstrap usadas no projeto atual
+.btn-primary {
+  background-color: $quicktrip-blue;
+  border-color: $quicktrip-blue;
+  color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: $quicktrip-blue-dark !important;
+  border-color: $quicktrip-blue-dark !important;
+  color: #fff !important;
+}
+
+.btn-outline-primary {
+  color: $quicktrip-blue;
+  border-color: $quicktrip-blue;
+  background-color: transparent;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+  background-color: $quicktrip-blue !important;
+  border-color: $quicktrip-blue !important;
+  color: #fff !important;
+}
+
+.btn-dark {
+  background-color: $quicktrip-yellow;
+  border-color: $quicktrip-yellow;
+  color: $quicktrip-blue;
+}
+
+.btn-dark:hover,
+.btn-dark:focus,
+.btn-dark:active {
+  background-color: $quicktrip-yellow-dark !important;
+  border-color: $quicktrip-yellow-dark !important;
+  color: $quicktrip-blue !important;
+}
+
+.btn-outline-dark {
+  color: $quicktrip-blue;
+  border-color: $quicktrip-blue;
+  background-color: #fff;
+}
+
+.btn-outline-dark:hover,
+.btn-outline-dark:focus,
+.btn-outline-dark:active {
+  background-color: $quicktrip-blue !important;
+  border-color: $quicktrip-blue !important;
+  color: #fff !important;
+}
+
+// Cards genéricos
+.card {
+  border: 0;
+  border-radius: 24px;
+  background: $quicktrip-surface;
+  box-shadow: 0 14px 40px $quicktrip-shadow;
+}
+
+// Badges
+.badge {
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+// Texto utilitário bootstrap já usado nas views
+.text-primary {
+  color: $quicktrip-blue !important;
+}
+
+.text-muted {
+  color: $quicktrip-text-soft !important;
+}
+
+// Helpers de animação já usados
+.hover-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

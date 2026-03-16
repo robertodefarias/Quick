@@ -1,17 +1,17 @@
-<nav class="navbar navbar-expand-lg bg-white border-bottom px-4 py-3 shadow-sm">
-  <div class="container-fluid">
+<nav class="quicktrip-navbar">
+  <div class="container-fluid quicktrip-navbar-container">
 
-    <%= link_to root_path, class: "navbar-brand d-flex align-items-center brand-pop" do %>
-      <%= image_tag "logo_quicktrip.png", height: 45 %>
+    <%= link_to root_path, class: "quicktrip-navbar-brand" do %>
+      <%= image_tag "logo_quicktrip.png", alt: "QuickTrip", class: "quicktrip-navbar-logo" %>
     <% end %>
 
-    <div class="ms-auto d-flex align-items-center gap-2">
+    <div class="quicktrip-navbar-actions">
       <% if user_signed_in? %>
-        <%= link_to "Meus roteiros", trips_path, class: "btn btn-outline-primary hover-lift" %>
-        <%= link_to "Sair", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-dark hover-lift" %>
+        <%= link_to "Meus roteiros", trips_path, class: "btn btn-outline-primary quicktrip-navbar-btn" %>
+        <%= link_to "Sair", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-dark quicktrip-navbar-btn" %>
       <% else %>
-        <%= link_to "Entrar", new_user_session_path, class: "btn btn-outline-primary hover-lift" %>
-        <%= link_to "Criar conta", new_user_registration_path, class: "btn btn-primary hover-lift" %>
+        <%= link_to "Entrar", new_user_session_path, class: "btn btn-outline-primary quicktrip-navbar-btn" %>
+        <%= link_to "Criar conta", new_user_registration_path, class: "btn btn-primary quicktrip-navbar-btn" %>
       <% end %>
     </div>
 

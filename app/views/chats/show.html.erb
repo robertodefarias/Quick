@@ -9,7 +9,14 @@
   </div>
 
   <div id="new_message_container" class="mt-4">
-    <%= simple_form_for [@chat, @message] do |f| %>
+    <%= simple_form_for [@chat, @message],
+      html: {
+        data: {
+          controller: "chat-form",
+          action: "turbo:submit-end->chat-form#reset"
+        }
+      } do |f|
+    %>
 
       <div class="input-group gap-2">
 
@@ -18,7 +25,8 @@
             placeholder: "Pergunte algo sobre sua viagem...",
             wrapper: false,
             input_html: {
-              class: "form-control form-control-lg bg-white border-0 shadow-sm rounded-4"
+              class: "form-control form-control-lg bg-white border-0 shadow-sm rounded-4",
+              data: { chat_form_target: "input"}
             } %>
 
         <button class="btn btn-primary btn-lg rounded-4 shadow-sm px-4" type="submit">

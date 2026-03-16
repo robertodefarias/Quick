@@ -1,35 +1,110 @@
+.quicktrip-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: calc(100vh - 90px);
+  padding: 5.5rem 0 4rem;
+  background:
+    radial-gradient(circle at top left, rgba(244, 197, 66, 0.12), transparent 28%),
+    radial-gradient(circle at top right, rgba(22, 59, 122, 0.10), transparent 30%),
+    linear-gradient(180deg, #f8fbff 0%, #f4f7fc 52%, #eef3fb 100%);
+}
+
+.quicktrip-hero::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  left: -80px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(244, 197, 66, 0.10);
+  filter: blur(30px);
+  z-index: 0;
+}
+
+.quicktrip-hero::after {
+  content: "";
+  position: absolute;
+  right: -120px;
+  bottom: 40px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: rgba(22, 59, 122, 0.08);
+  filter: blur(40px);
+  z-index: 0;
+}
+
+.quicktrip-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.quicktrip-hero .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.85rem 1.25rem;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(22, 59, 122, 0.12) !important;
+  color: $quicktrip-text;
+  font-weight: 700;
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgba(18, 32, 51, 0.05);
+}
+
 .quicktrip-hero .quicktrip-hero-logo {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 18px;
   flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-  font-family: 'Inter', sans-serif;
+  margin-bottom: 1.75rem;
+  font-family: "Inter", sans-serif;
 }
 
 .quicktrip-hero .brand-text {
-  font-size: clamp(2.4rem, 6vw, 3.5rem);
+  font-size: clamp(3rem, 7vw, 5rem);
   font-weight: 800;
-  color: #163b7a;
-  letter-spacing: -0.04em;
+  color: $quicktrip-blue;
+  letter-spacing: -0.05em;
   position: relative;
   z-index: 2;
-  line-height: 1;
+  line-height: 0.95;
+  text-shadow: 0 10px 30px rgba(22, 59, 122, 0.08);
 }
 
 .quicktrip-hero .lightning {
-  color: #f4c542;
+  color: $quicktrip-yellow;
   font-style: normal;
   position: relative;
 }
 
+.quicktrip-hero h1 {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: clamp(2.6rem, 5vw, 5.2rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  color: $quicktrip-text;
+}
+
+.quicktrip-hero .lead {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: clamp(1.08rem, 1.6vw, 1.45rem);
+  line-height: 1.7;
+  color: $quicktrip-text-soft !important;
+}
+
 .quicktrip-hero .plane-route {
   position: relative;
-  width: 220px;
-  height: 80px;
-  color: #163b7a;
+  width: 260px;
+  height: 95px;
+  color: $quicktrip-blue;
   flex-shrink: 0;
 }
 
@@ -46,13 +121,143 @@
 
 .quicktrip-hero .plane {
   position: absolute;
-  top: 40px;
+  top: 42px;
   left: 0;
-  font-size: 1.6rem;
-  color: #f4c544;
+  font-size: 1.9rem;
+  color: $quicktrip-yellow;
   animation: flyPlane 2.2s ease forwards;
   transform-origin: center;
   will-change: transform;
+  filter: drop-shadow(0 4px 10px rgba(244, 197, 66, 0.25));
+}
+
+.quicktrip-hero .btn-lg {
+  min-height: 64px;
+  padding: 1rem 2rem;
+  border-radius: 20px;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.quicktrip-hero .feature-card {
+  position: relative;
+  border-radius: 28px !important;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(22, 59, 122, 0.06);
+  box-shadow: 0 16px 40px rgba(18, 32, 51, 0.07) !important;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.quicktrip-hero .feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 22px 50px rgba(18, 32, 51, 0.11) !important;
+}
+
+.quicktrip-hero .feature-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(244, 197, 66, 0.10) 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(22, 59, 122, 0.05) 100%
+  );
+  pointer-events: none;
+}
+
+.quicktrip-hero .feature-card .card-body {
+  position: relative;
+  z-index: 2;
+}
+
+.quicktrip-hero .feature-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  font-size: 1.8rem;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(22, 59, 122, 0.12), rgba(244, 197, 66, 0.16));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.quicktrip-hero .floating-icon {
+  animation: floatingIcon 3s ease-in-out infinite;
+}
+
+.quicktrip-hero .card.bg-white {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-radius: 30px !important;
+  box-shadow: 0 18px 48px rgba(18, 32, 51, 0.08) !important;
+}
+
+.quicktrip-hero .h6.fw-bold,
+.quicktrip-hero .h5.fw-bold {
+  color: $quicktrip-text;
+}
+
+.quicktrip-hero .small {
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.quicktrip-hero .text-primary.fw-bold.mb-2 {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 0.75rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(22, 59, 122, 0.09);
+  color: $quicktrip-blue !important;
+  font-size: 1rem;
+}
+
+.quicktrip-hero .row.justify-content-center.mt-5 .col-lg-8.text-center {
+  padding-top: 0.5rem;
+}
+
+.quicktrip-hero .row.justify-content-center.mt-5 .col-lg-8.text-center p {
+  font-size: 1.05rem;
+}
+
+.quicktrip-hero .city-card {
+  border-radius: 28px;
+  box-shadow: 0 18px 42px rgba(18, 32, 51, 0.10);
+}
+
+.quicktrip-hero .city-card-overlay {
+  padding: 24px;
+  background: linear-gradient(
+    to top,
+    rgba(7, 18, 38, 0.92) 0%,
+    rgba(7, 18, 38, 0.55) 38%,
+    rgba(7, 18, 38, 0.10) 72%,
+    transparent 100%
+  );
+}
+
+.quicktrip-hero .city-card-title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: $quicktrip-blue;
+  text-shadow:
+    -1px -1px 0 rgba(244, 197, 66, 0.95),
+     1px -1px 0 rgba(244, 197, 66, 0.95),
+    -1px  1px 0 rgba(244, 197, 66, 0.95),
+     1px  1px 0 rgba(244, 197, 66, 0.95),
+     0 4px 12px rgba(0, 0, 0, 0.28);
+}
+
+.quicktrip-hero .city-card .btn {
+  border-radius: 14px;
+  font-weight: 700;
+  padding: 0.65rem 1rem;
 }
 
 @keyframes drawPath {
@@ -75,19 +280,56 @@
     opacity: 1;
   }
   60% {
-    transform: translate(110px, -18px) rotate(-6deg);
+    transform: translate(135px, -22px) rotate(-6deg);
     opacity: 1;
   }
   100% {
-    transform: translate(180px, -8px) rotate(0deg);
+    transform: translate(212px, -8px) rotate(0deg);
     opacity: 1;
   }
 }
 
+@keyframes floatingIcon {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@media (max-width: 992px) {
+  .quicktrip-hero {
+    min-height: auto;
+    padding: 4.5rem 0 3.5rem;
+  }
+
+  .quicktrip-hero .quicktrip-hero-logo {
+    gap: 14px;
+  }
+
+  .quicktrip-hero .plane-route {
+    width: 220px;
+    height: 82px;
+  }
+
+  .quicktrip-hero h1 {
+    line-height: 1.02;
+  }
+}
+
 @media (max-width: 768px) {
+  .quicktrip-hero {
+    padding: 3.8rem 0 3rem;
+  }
+
   .quicktrip-hero .quicktrip-hero-logo {
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
+  }
+
+  .quicktrip-hero .brand-text {
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
   }
 
   .quicktrip-hero .plane-route {
@@ -97,5 +339,32 @@
 
   .quicktrip-hero .plane {
     font-size: 1.4rem;
+    top: 34px;
+  }
+
+  .quicktrip-hero h1 {
+    font-size: clamp(2.2rem, 10vw, 3.3rem);
+  }
+
+  .quicktrip-hero .lead {
+    font-size: 1.02rem;
+    line-height: 1.65;
+  }
+
+  .quicktrip-hero .btn-lg {
+    width: 100%;
+  }
+
+  .quicktrip-hero .d-flex.justify-content-center.gap-3.flex-wrap {
+    gap: 1rem !important;
+  }
+
+  .quicktrip-hero .feature-card,
+  .quicktrip-hero .card.bg-white {
+    border-radius: 24px !important;
+  }
+
+  .quicktrip-hero .city-card-title {
+    font-size: 1.45rem;
   }
 }

@@ -1,9 +1,70 @@
-<div class="container py-5">
-  <h1>Criar Viagem</h1>
+<div class="quicktrip-form-page">
+  <div class="container">
+    <div class="quicktrip-form-shell">
+      <div class="quicktrip-form-grid">
 
-  <%= simple_form_for @trip do |f| %>
-    <%= f.input :city, label: "Cidade", input_html: { class: "bg-white rounded-3 shadow-sm" } %>
-    <%= f.input :content, label: "Descrição", input_html: { class: "bg-white rounded-3 shadow-sm" } %>
-    <%= f.button :submit, "Criar Viagem", class: "btn btn-primary me-2" %>
-  <% end %>
+        <div class="quicktrip-form-intro">
+          <div class="quicktrip-form-intro-content">
+            <span class="quicktrip-form-eyebrow">✈️ Sua QuickTrip com agilidade</span>
+
+            <h1>Crie seu próximo roteiro com mais clareza e rapidez</h1>
+
+            <p>
+              Informe a cidade e descreva o tipo de experiência que você deseja viver.
+              O QuickTrip organiza tudo para você de forma prática, objetiva e personalizada.
+            </p>
+
+            <div class="quicktrip-form-benefits">
+              <div class="quicktrip-form-benefit">
+                <div class="quicktrip-form-benefit-icon">📍</div>
+                <div>
+                  <strong>Destino em foco</strong>
+                  <span>Seu roteiro parte da cidade que você quer explorar.</span>
+                </div>
+              </div>
+
+              <div class="quicktrip-form-benefit">
+                <div class="quicktrip-form-benefit-icon">⚡</div>
+                <div>
+                  <strong>Resposta rápida</strong>
+                  <span>Pesquise menos, aproveite mais.</span>
+                </div>
+              </div>
+
+              <div class="quicktrip-form-benefit">
+                <div class="quicktrip-form-benefit-icon">✨</div>
+                <div>
+                  <strong>Experiência personalizada</strong>
+                  <span>Sugestões mais alinhadas com o seu tempo.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quicktrip-form-card">
+          <h2>Montar novo roteiro</h2>
+          <p class="quicktrip-form-card-subtitle">
+            Preencha os dados abaixo e comece a planejar sua viagem.
+          </p>
+
+          <%= simple_form_for @trip do |f| %>
+            <%= f.input :city,
+              label: "Para qual cidade você viaja?",
+              placeholder: "Ex.: Rio de Janeiro, São Paulo, Salvador..." %>
+
+            <%= f.input :content,
+              label: "Detalhe tempo na cidade e preferências de roteiro.",
+              placeholder: "Ex.: Tenho 24 horas na cidade X e quero conhecer um bar que sirva drinks." %>
+
+            <div class="quicktrip-form-actions">
+              <%= f.button :submit, "Criar roteiro", class: "btn btn-primary" %>
+              <%= link_to "Voltar", trips_path, class: "quicktrip-form-back-link" %>
+            </div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>

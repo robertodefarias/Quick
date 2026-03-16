@@ -22,7 +22,7 @@ class MessagesController < ApplicationController
 
     response = RubyLLM.chat
       .with_instructions(instructions)
-      .ask(@message.content)
+      .ask(conversartion_history)
 
     @ai_message = Message.create!(
       chat: @chat,
@@ -35,8 +35,13 @@ class MessagesController < ApplicationController
     end
   end
 
-  def trip_context
-    "The user is asking about #{@trip.city}. Context: #{@trip.context}"
+  def conversartion_history
+    @chat.messages.last(10).map do |message|
+      {
+        role: message.role,
+        content: message.content
+      }
+    end
   end
 
   private
