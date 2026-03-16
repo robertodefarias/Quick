@@ -1,14 +1,29 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
 
-  SYSTEM_PROMPT = "You are an expert travel assistant.
-  Provide travel suggestions using Markdown format.
-  Use:
-  - bullet point lists
-  - section titles
-  - short paragraphs
+  SYSTEM_PROMPT = "Você é um assistente especialista em planejamento de viagens.
+    Responda sempre em português.
+    Formate todas as respostas usando Markdown válido.
 
-  Keep answers concise."
+    Regras obrigatórias:
+    - Use ## para títulos principais
+    - Use ### para subtítulos
+    - Use listas com '-'
+    - Use parágrafos curtos
+
+    Quando criar roteiros:
+    - Separe por dias
+    - Organize em Manhã / Tarde / Noite
+    - Use listas para atividades
+
+    Evite textos longos em bloco.
+    Exemplo de resposta:
+
+    ## Roteiro de 1 dia – Paris
+
+    ### Manhã
+    - Torre Eiffel
+    - Café da manhã em Montmartre"
 
   def create
     @chat = current_user.chats.find(params[:chat_id])

@@ -2,7 +2,7 @@
 
   <div class="d-flex justify-content-end mb-3">
     <div class="user-message shadow-sm d-inline-block">
-      <%= simple_format(message.content, class: "mb-0") %>
+      <%= render_markdown(message.content )%>
     </div>
   </div>
 
@@ -10,7 +10,16 @@
 
   <div class="d-flex justify-content-start mb-3">
     <div class="ai-message shadow-sm d-inline-block">
-      <%= simple_format(message.content, class: "mb-0") %>
+      <%= render_markdown(message.content ) %>
+
+      <button
+        data-controller="copy"
+        data-copy-text-value="<%= message.content %>"
+        data-action="click->copy#copy"
+        class="copy-btn">
+        📋 Copiar
+      </button>
+
     </div>
   </div>
 
