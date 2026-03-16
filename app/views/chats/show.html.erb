@@ -1,6 +1,6 @@
 <div class="container py-5">
 
-  <div id="messages" class="mb-4">
+  <div id="messages" data-controller="chat-scroll" class="mb-4">
 
     <%= turbo_stream_from @chat %>
 
