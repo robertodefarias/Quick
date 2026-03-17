@@ -22,22 +22,23 @@ class ChatsController < ApplicationController
 
     # mensagem inicial da IA
     if @chat.messages.empty?
+  initial_prompt = "Crie um roteiro resumido para visitar #{@trip.city}. #{@trip.content}"
 
-      intro = <<~TEXT
-      Welcome! Here is a quick guide for visiting #{@trip.city}:
+  Message.create!(
+    chat: @chat,
+    role: "user",
+    content: initial_prompt
+  )
 
-      #{@trip.content}
+  assistant_message = Message.create!(
+    chat: @chat,
+    role: "assistant",
+    content: ""
+  )
 
-      Ask me anything about attractions, food or travel tips!
-      TEXT
-
-      Message.create!(
-        chat: @chat,
-        role: "assistant",
-        content: intro
-      )
-
-    end
+  response = RubyLLM.chat.ask(initial_prompt).content
+  assistant_message.update!(content: response)
+end
 
     redirect_to chat_path(@chat)
   end

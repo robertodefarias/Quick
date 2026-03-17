@@ -9,15 +9,6 @@ class TripsController < ApplicationController
     @trip = Trip.new
   end
 
-  def show
-    @chat = current_user.chats.find(params[:id])
-    @message = Message.new
-
-    return unless @chat.messages.count == 1
-
-    MessagesController.new.send(:send_question)
-  end
-
   def create
     @trip = current_user.trips.new(trip_params)
 
@@ -31,6 +22,12 @@ class TripsController < ApplicationController
         chat: chat,
         role: "user",
         content: "Criando um roteiro resumido para visitar #{@trip.city}. #{@trip.content}"
+      )
+
+      Message.create!(
+        chat: chat,
+        role: "assistant",
+        content: ""
       )
 
       GenerateTripPlanJob.perform_later(chat.id)

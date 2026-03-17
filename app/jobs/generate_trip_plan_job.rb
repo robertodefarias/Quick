@@ -28,17 +28,13 @@ class GenerateTripPlanJob < ApplicationJob
   def perform(chat_id)
     chat = Chat.find(chat_id)
 
-    message = chat.messages.last
-
-    ai_message = chat.messages.create!(
-      role: "assistant",
-      content: ""
-    )
+    user_message = chat.messages.where(role: "user").last
+    ai_message = chat.messages.where(role: "assistant").last
 
     ruby_llm_chat = RubyLLM.chat
     ruby_llm_chat.with_instructions(SYSTEM_PROMPT)
 
-    ruby_llm_chat.ask(message.content) do |chunk|
+    ruby_llm_chat.ask(user_message.content) do |chunk|
       next if chunk.content.blank?
 
       ai_message.update!(
