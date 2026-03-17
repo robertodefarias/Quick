@@ -1,6 +1,30 @@
 class GenerateTripPlanJob < ApplicationJob
   queue_as :default
 
+  SYSTEM_PROMPT = "Você é um assistente especialista em planejamento de viagens.
+    Responda sempre em português.
+    Formate todas as respostas usando Markdown válido.
+
+    Regras obrigatórias:
+    - Use ## para títulos principais
+    - Use ### para subtítulos
+    - Use listas com '-'
+    - Use parágrafos curtos
+
+    Quando criar roteiros:
+    - Separe por dias
+    - Organize em Manhã / Tarde / Noite
+    - Use listas para atividades
+
+    Evite textos longos em bloco.
+    Exemplo de resposta:
+
+    ## Roteiro de 1 dia - Paris
+
+    ### Manhã
+    - Torre Eiffel
+    - Café da manhã em Montmartre"
+
   def perform(chat_id)
     chat = Chat.find(chat_id)
 
@@ -12,6 +36,7 @@ class GenerateTripPlanJob < ApplicationJob
     )
 
     ruby_llm_chat = RubyLLM.chat
+    ruby_llm_chat.with_instructions(SYSTEM_PROMPT)
 
     ruby_llm_chat.ask(message.content) do |chunk|
       next if chunk.content.blank?
