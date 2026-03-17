@@ -34,10 +34,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_17_134816) do
 
   create_table "solid_cable_messages", force: :cascade do |t|
     t.string "channel", null: false
-    t.string "channel_hash", null: false
     t.datetime "created_at", null: false
     t.binary "payload", null: false
-    t.index ["channel_hash"], name: "index_solid_cable_messages_on_channel_hash"
+    t.datetime "updated_at", null: false
+    t.index ["channel"], name: "index_solid_cable_messages_on_channel"
   end
 
   create_table "solid_cache_entries", force: :cascade do |t|
