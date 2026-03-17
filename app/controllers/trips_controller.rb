@@ -19,7 +19,7 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = current_user.trips.build(trip_params)
+    @trip = current_user.trips.rild(trip_params)
 
     if @trip.save
       chat = Chat.create!(
