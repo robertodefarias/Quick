@@ -2,7 +2,8 @@
   position: relative;
   overflow: hidden;
   min-height: calc(100vh - 90px);
-  padding: 5.5rem 0 4rem;
+  margin-top: 0;
+  padding: 1.5rem 0 4rem;
   background:
     radial-gradient(circle at top left, rgba(244, 197, 66, 0.12), transparent 28%),
     radial-gradient(circle at top right, rgba(22, 59, 122, 0.10), transparent 30%),
@@ -301,7 +302,7 @@
 @media (max-width: 992px) {
   .quicktrip-hero {
     min-height: auto;
-    padding: 4.5rem 0 3.5rem;
+    padding: 1.25rem 0 3.5rem;
   }
 
   .quicktrip-hero .quicktrip-hero-logo {
@@ -320,7 +321,7 @@
 
 @media (max-width: 768px) {
   .quicktrip-hero {
-    padding: 3.8rem 0 3rem;
+    padding: 1rem 0 3rem;
   }
 
   .quicktrip-hero .quicktrip-hero-logo {
@@ -367,4 +368,12 @@
   .quicktrip-hero .city-card-title {
     font-size: 1.45rem;
   }
+}
+
+.quicktrip-navbar + .quicktrip-hero {
+  margin-top: 0 !important;
+}
+
+.quicktrip-hero .container {
+  padding-top: 0;
 }
