@@ -13,13 +13,13 @@ class TripsController < ApplicationController
     @chat = current_user.chats.find(params[:id])
     @message = Message.new
 
-    if @chat.messages.count == 1
-      MessagesController.new.send(:send_question)
-    end
+    return unless @chat.messages.count == 1
+
+    MessagesController.new.send(:send_question)
   end
 
   def create
-    @trip = current_user.trips.rild(trip_params)
+    @trip = current_user.trips.new(trip_params)
 
     if @trip.save
       chat = Chat.create!(
